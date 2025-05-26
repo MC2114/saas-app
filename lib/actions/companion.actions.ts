@@ -54,7 +54,7 @@ export const addToSessionHistory = async (companionId: string) => {
     const { userId } = await auth();
     const { data, error } = await supabase.from('session_history').insert({
         companion_id: companionId,
-        userId: userId,
+        user_id: userId,
     })
 
     if (error) throw new Error(error.message);
@@ -106,7 +106,7 @@ export const newCompanionPermissions = async () => {
 
     if (error) throw new Error(error.message);
     const companionCount = data?.length;
-    
+
     if (companionCount >= limit) {
         return false;
     } else {
